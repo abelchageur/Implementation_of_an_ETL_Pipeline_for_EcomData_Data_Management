@@ -1,0 +1,46 @@
+[2025-04-10T22:42:39.819+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: generate_and_verify_data.check_minio_file scheduled__2023-01-07T17:00:00+00:00 [queued]>
+[2025-04-10T22:42:39.838+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: generate_and_verify_data.check_minio_file scheduled__2023-01-07T17:00:00+00:00 [queued]>
+[2025-04-10T22:42:39.840+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 2
+[2025-04-10T22:42:39.871+0000] {taskinstance.py:1380} INFO - Executing <Task(PythonOperator): check_minio_file> on 2023-01-07 17:00:00+00:00
+[2025-04-10T22:42:39.881+0000] {standard_task_runner.py:57} INFO - Started process 1042 to run task
+[2025-04-10T22:42:39.887+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'generate_and_verify_data', 'check_minio_file', 'scheduled__2023-01-07T17:00:00+00:00', '--job-id', '1429', '--raw', '--subdir', 'DAGS_FOLDER/dags_1.py', '--cfg-path', '/tmp/tmp32a4mrb4']
+[2025-04-10T22:42:39.892+0000] {standard_task_runner.py:85} INFO - Job 1429: Subtask check_minio_file
+[2025-04-10T22:42:40.014+0000] {task_command.py:415} INFO - Running <TaskInstance: generate_and_verify_data.check_minio_file scheduled__2023-01-07T17:00:00+00:00 [running]> on host 0821f6066d6a
+[2025-04-10T22:42:40.198+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='generate_and_verify_data' AIRFLOW_CTX_TASK_ID='check_minio_file' AIRFLOW_CTX_EXECUTION_DATE='2023-01-07T17:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2023-01-07T17:00:00+00:00'
+[2025-04-10T22:42:55.123+0000] {local_task_job_runner.py:294} WARNING - State of this instance has been externally set to removed. Terminating instance.
+[2025-04-10T22:42:55.141+0000] {process_utils.py:131} INFO - Sending 15 to group 1042. PIDs of all processes in the group: [1042]
+[2025-04-10T22:42:55.142+0000] {process_utils.py:86} INFO - Sending the signal 15 to group 1042
+[2025-04-10T22:42:55.157+0000] {taskinstance.py:1630} ERROR - Received SIGTERM. Terminating subprocesses.
+[2025-04-10T22:42:55.159+0000] {taskinstance.py:1935} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/opt/airflow/dags/dags_1.py", line 138, in check_minio_file
+    s3.head_object(Bucket='ecommerce-data', Key='orders.csv')
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/client.py", line 535, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/client.py", line 963, in _make_api_call
+    http, parsed_response = self._make_request(
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/client.py", line 986, in _make_request
+    return self._endpoint.make_request(operation_model, request_dict)
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/endpoint.py", line 119, in make_request
+    return self._send_request(request_dict, operation_model)
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/endpoint.py", line 202, in _send_request
+    while self._needs_retry(
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/endpoint.py", line 373, in _needs_retry
+    time.sleep(handler_response)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 1632, in signal_handler
+    raise AirflowException("Task received SIGTERM signal")
+airflow.exceptions.AirflowException: Task received SIGTERM signal
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 192, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 209, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/dags_1.py", line 141, in check_minio_file
+    raise Exception(f"CSV file not found in MinIO: {e}")
+Exception: CSV file not found in MinIO: Task received SIGTERM signal
+[2025-04-10T22:42:55.271+0000] {taskinstance.py:1398} INFO - Marking task as FAILED. dag_id=generate_and_verify_data, task_id=check_minio_file, execution_date=20230107T170000, start_date=20250410T224239, end_date=20250410T224255
+[2025-04-10T22:42:55.341+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 1429 for task check_minio_file (CSV file not found in MinIO: Task received SIGTERM signal; 1042)
+[2025-04-10T22:42:55.380+0000] {process_utils.py:79} INFO - Process psutil.Process(pid=1042, status='terminated', exitcode=1, started='22:42:39') (1042) terminated with exit code 1

@@ -1,0 +1,24 @@
+[2025-04-11T08:15:11.537+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: generate_and_verify_data.check_minio_task scheduled__2023-01-10T12:00:00+00:00 [queued]>
+[2025-04-11T08:15:11.561+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: generate_and_verify_data.check_minio_task scheduled__2023-01-10T12:00:00+00:00 [queued]>
+[2025-04-11T08:15:11.562+0000] {taskinstance.py:1359} INFO - Starting attempt 2 of 2
+[2025-04-11T08:15:11.592+0000] {taskinstance.py:1380} INFO - Executing <Task(BashOperator): check_minio_task> on 2023-01-10 12:00:00+00:00
+[2025-04-11T08:15:11.603+0000] {standard_task_runner.py:57} INFO - Started process 5989 to run task
+[2025-04-11T08:15:11.611+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'generate_and_verify_data', 'check_minio_task', 'scheduled__2023-01-10T12:00:00+00:00', '--job-id', '1673', '--raw', '--subdir', 'DAGS_FOLDER/dags_1.py', '--cfg-path', '/tmp/tmptfd3z7f5']
+[2025-04-11T08:15:11.618+0000] {standard_task_runner.py:85} INFO - Job 1673: Subtask check_minio_task
+[2025-04-11T08:15:11.779+0000] {task_command.py:415} INFO - Running <TaskInstance: generate_and_verify_data.check_minio_task scheduled__2023-01-10T12:00:00+00:00 [running]> on host 0821f6066d6a
+[2025-04-11T08:15:12.025+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='generate_and_verify_data' AIRFLOW_CTX_TASK_ID='check_minio_task' AIRFLOW_CTX_EXECUTION_DATE='2023-01-10T12:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2023-01-10T12:00:00+00:00'
+[2025-04-11T08:15:12.029+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-04-11T08:15:12.033+0000] {subprocess.py:75} INFO - Running command: ['/bin/bash', '-c', '\n            echo "Checking MinIO bucket and file..."\n            docker exec minio mc alias set myminio http://127.0.0.1:9000 minioadmin minioadmin &&             docker exec minio mc ls myminio/ecommerce-data | grep orders.csv || exit 1\n            echo "MinIO check completed successfully."\n        ']
+[2025-04-11T08:15:12.075+0000] {subprocess.py:86} INFO - Output:
+[2025-04-11T08:15:12.081+0000] {subprocess.py:93} INFO - Checking MinIO bucket and file...
+[2025-04-11T08:15:12.293+0000] {subprocess.py:93} INFO - Added `myminio` successfully.
+[2025-04-11T08:15:12.647+0000] {subprocess.py:97} INFO - Command exited with return code 1
+[2025-04-11T08:15:12.669+0000] {taskinstance.py:1935} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/bash.py", line 210, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 1.
+[2025-04-11T08:15:12.677+0000] {taskinstance.py:1398} INFO - Marking task as FAILED. dag_id=generate_and_verify_data, task_id=check_minio_task, execution_date=20230110T120000, start_date=20250411T081511, end_date=20250411T081512
+[2025-04-11T08:15:12.801+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 1673 for task check_minio_task (Bash command failed. The command returned a non-zero exit code 1.; 5989)
+[2025-04-11T08:15:12.853+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2025-04-11T08:15:12.903+0000] {taskinstance.py:2776} INFO - 0 downstream tasks scheduled from follow-on schedule check

@@ -1,0 +1,3 @@
+[2025-04-09T15:50:48.832+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ecommerce_pipeline.generate_data scheduled__2023-01-01T00:00:00+00:00 [queued]>
+[2025-04-09T15:50:48.880+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ecommerce_pipeline.generate_data scheduled__2023-01-01T00:00:00+00:00 [queued]>
+[2025-04-09T15:50:48.882+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 2

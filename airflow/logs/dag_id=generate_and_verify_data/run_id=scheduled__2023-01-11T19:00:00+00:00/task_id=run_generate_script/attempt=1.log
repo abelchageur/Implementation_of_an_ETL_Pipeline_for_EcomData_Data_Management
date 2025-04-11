@@ -1,0 +1,17 @@
+[2025-04-11T08:20:51.535+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: generate_and_verify_data.run_generate_script scheduled__2023-01-11T19:00:00+00:00 [queued]>
+[2025-04-11T08:20:51.560+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: generate_and_verify_data.run_generate_script scheduled__2023-01-11T19:00:00+00:00 [queued]>
+[2025-04-11T08:20:51.562+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 2
+[2025-04-11T08:20:51.641+0000] {taskinstance.py:1380} INFO - Executing <Task(BashOperator): run_generate_script> on 2023-01-11 19:00:00+00:00
+[2025-04-11T08:20:51.652+0000] {standard_task_runner.py:57} INFO - Started process 7209 to run task
+[2025-04-11T08:20:51.792+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'generate_and_verify_data', 'run_generate_script', 'scheduled__2023-01-11T19:00:00+00:00', '--job-id', '1735', '--raw', '--subdir', 'DAGS_FOLDER/dags_1.py', '--cfg-path', '/tmp/tmp7ucwh1na']
+[2025-04-11T08:20:51.812+0000] {standard_task_runner.py:85} INFO - Job 1735: Subtask run_generate_script
+[2025-04-11T08:20:52.168+0000] {task_command.py:415} INFO - Running <TaskInstance: generate_and_verify_data.run_generate_script scheduled__2023-01-11T19:00:00+00:00 [running]> on host 0821f6066d6a
+[2025-04-11T08:20:52.774+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='generate_and_verify_data' AIRFLOW_CTX_TASK_ID='run_generate_script' AIRFLOW_CTX_EXECUTION_DATE='2023-01-11T19:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2023-01-11T19:00:00+00:00'
+[2025-04-11T08:20:52.804+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-04-11T08:20:52.806+0000] {subprocess.py:75} INFO - Running command: ['/bin/bash', '-c', 'cd /opt/***/data/ && python3 /opt/***/data/generate_script.py && echo "Script executed successfully." || echo "Script failed."']
+[2025-04-11T08:20:52.892+0000] {subprocess.py:86} INFO - Output:
+[2025-04-11T08:21:01.350+0000] {subprocess.py:93} INFO - Script executed successfully.
+[2025-04-11T08:21:01.351+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2025-04-11T08:21:01.480+0000] {taskinstance.py:1398} INFO - Marking task as SUCCESS. dag_id=generate_and_verify_data, task_id=run_generate_script, execution_date=20230111T190000, start_date=20250411T082051, end_date=20250411T082101
+[2025-04-11T08:21:01.662+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2025-04-11T08:21:01.872+0000] {taskinstance.py:2776} INFO - 1 downstream tasks scheduled from follow-on schedule check

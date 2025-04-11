@@ -1,0 +1,112 @@
+[2025-04-10T22:42:38.826+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: generate_and_verify_data.check_minio_file scheduled__2023-01-07T15:00:00+00:00 [queued]>
+[2025-04-10T22:42:38.846+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: generate_and_verify_data.check_minio_file scheduled__2023-01-07T15:00:00+00:00 [queued]>
+[2025-04-10T22:42:38.847+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 2
+[2025-04-10T22:42:38.999+0000] {taskinstance.py:1380} INFO - Executing <Task(PythonOperator): check_minio_file> on 2023-01-07 15:00:00+00:00
+[2025-04-10T22:42:39.016+0000] {standard_task_runner.py:57} INFO - Started process 1039 to run task
+[2025-04-10T22:42:39.023+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'generate_and_verify_data', 'check_minio_file', 'scheduled__2023-01-07T15:00:00+00:00', '--job-id', '1427', '--raw', '--subdir', 'DAGS_FOLDER/dags_1.py', '--cfg-path', '/tmp/tmp7vyx5lz1']
+[2025-04-10T22:42:39.035+0000] {standard_task_runner.py:85} INFO - Job 1427: Subtask check_minio_file
+[2025-04-10T22:42:39.171+0000] {task_command.py:415} INFO - Running <TaskInstance: generate_and_verify_data.check_minio_file scheduled__2023-01-07T15:00:00+00:00 [running]> on host 0821f6066d6a
+[2025-04-10T22:42:39.391+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='generate_and_verify_data' AIRFLOW_CTX_TASK_ID='check_minio_file' AIRFLOW_CTX_EXECUTION_DATE='2023-01-07T15:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2023-01-07T15:00:00+00:00'
+[2025-04-10T22:42:54.304+0000] {local_task_job_runner.py:294} WARNING - State of this instance has been externally set to removed. Terminating instance.
+[2025-04-10T22:42:54.338+0000] {process_utils.py:131} INFO - Sending 15 to group 1039. PIDs of all processes in the group: [1039]
+[2025-04-10T22:42:54.346+0000] {process_utils.py:86} INFO - Sending the signal 15 to group 1039
+[2025-04-10T22:42:53.926+0000] {taskinstance.py:1630} ERROR - Received SIGTERM. Terminating subprocesses.
+[2025-04-10T22:42:53.942+0000] {taskinstance.py:1935} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/connection.py", line 174, in _new_conn
+    conn = connection.create_connection(
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/util/connection.py", line 72, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+  File "/usr/local/lib/python3.8/socket.py", line 918, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -2] Name or service not known
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/httpsession.py", line 465, in send
+    urllib_response = conn.urlopen(
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/connectionpool.py", line 714, in urlopen
+    httplib_response = self._make_request(
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/connectionpool.py", line 415, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/awsrequest.py", line 96, in request
+    rval = super().request(method, url, body, headers, *args, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/connection.py", line 244, in request
+    super(HTTPConnection, self).request(method, url, body=body, headers=headers)
+  File "/usr/local/lib/python3.8/http/client.py", line 1256, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/usr/local/lib/python3.8/http/client.py", line 1302, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/usr/local/lib/python3.8/http/client.py", line 1251, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/awsrequest.py", line 123, in _send_output
+    self.send(msg)
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/awsrequest.py", line 223, in send
+    return super().send(str)
+  File "/usr/local/lib/python3.8/http/client.py", line 951, in send
+    self.connect()
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/connection.py", line 205, in connect
+    conn = self._new_conn()
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/connection.py", line 174, in _new_conn
+    conn = connection.create_connection(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 1632, in signal_handler
+    raise AirflowException("Task received SIGTERM signal")
+airflow.exceptions.AirflowException: Task received SIGTERM signal
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/airflow/dags/dags_1.py", line 138, in check_minio_file
+    s3.head_object(Bucket='ecommerce-data', Key='orders.csv')
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/client.py", line 535, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/client.py", line 963, in _make_api_call
+    http, parsed_response = self._make_request(
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/client.py", line 986, in _make_request
+    return self._endpoint.make_request(operation_model, request_dict)
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/endpoint.py", line 119, in make_request
+    return self._send_request(request_dict, operation_model)
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/endpoint.py", line 202, in _send_request
+    while self._needs_retry(
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/endpoint.py", line 354, in _needs_retry
+    responses = self._event_emitter.emit(
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/hooks.py", line 412, in emit
+    return self._emitter.emit(aliased_event_name, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/hooks.py", line 256, in emit
+    return self._emit(event_name, kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/hooks.py", line 239, in _emit
+    response = handler(**kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/retryhandler.py", line 207, in __call__
+    if self._checker(**checker_kwargs):
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/retryhandler.py", line 284, in __call__
+    should_retry = self._should_retry(
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/retryhandler.py", line 307, in _should_retry
+    return self._checker(
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/retryhandler.py", line 363, in __call__
+    checker_response = checker(
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/retryhandler.py", line 247, in __call__
+    return self._check_caught_exception(
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/retryhandler.py", line 416, in _check_caught_exception
+    raise caught_exception
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/endpoint.py", line 281, in _do_get_response
+    http_response = self._send(request)
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/endpoint.py", line 377, in _send
+    return self.http_session.send(request)
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/httpsession.py", line 510, in send
+    raise HTTPClientError(error=e)
+botocore.exceptions.HTTPClientError: An HTTP Client raised an unhandled exception: Task received SIGTERM signal
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 192, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 209, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/dags_1.py", line 141, in check_minio_file
+    raise Exception(f"CSV file not found in MinIO: {e}")
+Exception: CSV file not found in MinIO: An HTTP Client raised an unhandled exception: Task received SIGTERM signal
+[2025-04-10T22:42:54.111+0000] {taskinstance.py:1398} INFO - Marking task as FAILED. dag_id=generate_and_verify_data, task_id=check_minio_file, execution_date=20230107T150000, start_date=20250410T224238, end_date=20250410T224254
+[2025-04-10T22:42:54.763+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 1427 for task check_minio_file (CSV file not found in MinIO: An HTTP Client raised an unhandled exception: Task received SIGTERM signal; 1039)
+[2025-04-10T22:42:54.911+0000] {process_utils.py:79} INFO - Process psutil.Process(pid=1039, status='terminated', exitcode=1, started='22:42:38') (1039) terminated with exit code 1

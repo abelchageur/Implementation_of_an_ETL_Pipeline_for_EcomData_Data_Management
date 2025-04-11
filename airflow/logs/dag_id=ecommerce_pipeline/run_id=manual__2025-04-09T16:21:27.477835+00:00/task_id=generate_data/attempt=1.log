@@ -1,0 +1,22 @@
+[2025-04-09T16:21:28.699+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ecommerce_pipeline.generate_data manual__2025-04-09T16:21:27.477835+00:00 [queued]>
+[2025-04-09T16:21:28.710+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ecommerce_pipeline.generate_data manual__2025-04-09T16:21:27.477835+00:00 [queued]>
+[2025-04-09T16:21:28.710+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 2
+[2025-04-09T16:21:28.726+0000] {taskinstance.py:1380} INFO - Executing <Task(PythonOperator): generate_data> on 2025-04-09 16:21:27.477835+00:00
+[2025-04-09T16:21:28.732+0000] {standard_task_runner.py:57} INFO - Started process 217 to run task
+[2025-04-09T16:21:28.736+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'ecommerce_pipeline', 'generate_data', 'manual__2025-04-09T16:21:27.477835+00:00', '--job-id', '56', '--raw', '--subdir', 'DAGS_FOLDER/dags_1.py', '--cfg-path', '/tmp/tmphqdxfmt5']
+[2025-04-09T16:21:28.739+0000] {standard_task_runner.py:85} INFO - Job 56: Subtask generate_data
+[2025-04-09T16:21:28.791+0000] {task_command.py:415} INFO - Running <TaskInstance: ecommerce_pipeline.generate_data manual__2025-04-09T16:21:27.477835+00:00 [running]> on host db3312bb44e3
+[2025-04-09T16:21:28.873+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='ecommerce_pipeline' AIRFLOW_CTX_TASK_ID='generate_data' AIRFLOW_CTX_EXECUTION_DATE='2025-04-09T16:21:27.477835+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-04-09T16:21:27.477835+00:00'
+[2025-04-09T16:21:28.876+0000] {taskinstance.py:1935} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 192, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 209, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/dags_1.py", line 25, in generate_data
+    with open('/opt/airflow/data/Staging/orders.csv', 'w', newline='') as csvfile:
+FileNotFoundError: [Errno 2] No such file or directory: '/opt/airflow/data/Staging/orders.csv'
+[2025-04-09T16:21:28.892+0000] {taskinstance.py:1398} INFO - Marking task as UP_FOR_RETRY. dag_id=ecommerce_pipeline, task_id=generate_data, execution_date=20250409T162127, start_date=20250409T162128, end_date=20250409T162128
+[2025-04-09T16:21:28.905+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 56 for task generate_data ([Errno 2] No such file or directory: '/opt/airflow/data/Staging/orders.csv'; 217)
+[2025-04-09T16:21:28.951+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2025-04-09T16:21:28.974+0000] {taskinstance.py:2776} INFO - 0 downstream tasks scheduled from follow-on schedule check
